@@ -2,9 +2,9 @@
   "name": "viberoom",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "build":"npm install --prefix server && npm install --prefix client && npm run build --prefix client && npm run start --prefix client",
+    "build":"npm install --prefix server && npm install --prefix client && npm run build --prefix client",
     "start":"npm run start --prefix server"
   },
   "keywords": [],

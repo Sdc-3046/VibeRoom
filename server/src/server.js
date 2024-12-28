@@ -7,8 +7,10 @@ import cookieparser from "cookie-parser";
 import cors from "cors";
 import bodyParser from "body-parser";
 import {io, app, server} from "./lib/socket.js"
+import path from "path";
 
 dotenv.config({path: "./src/.env"});
+const __dirname = path.resolve();
 
 
 const port = process.env.PORT || 8000;
@@ -24,6 +26,14 @@ app.use(cors({
 
 app.use("/api/auth", authRoutes);
 app.use('/api/messages', messageRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
+  });
+}
 
 server.listen(port, () => {
   console.log(`Example app listening on port ${port}!`)
