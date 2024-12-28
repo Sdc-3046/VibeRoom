@@ -1,8 +1,6 @@
 import { Server } from 'socket.io'
 import http from 'http'
 import express from 'express'
-import { Socket } from 'dgram'
-import { disconnect } from 'process'
 
 const app = express()
 const server = http.createServer(app)
